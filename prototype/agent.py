@@ -5,12 +5,15 @@ when phase 6 (Multi-Agent) splits this into several specialized agents,
 this is the only file that needs to grow.
 """
 
-from anthropic import Anthropic
+from openai import OpenAI
 
 import prototype.config as config
 
 
-_client = Anthropic()   # reads ANTHROPIC_API_KEY from env
+_client = OpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    api_key=config.OPENROUTER_API_KEY,
+)
 
 
 def build_prompt(events, label: str) -> str:
@@ -38,11 +41,11 @@ def build_prompt(events, label: str) -> str:
 def investigate(events, label: str) -> str:
     """Send a event group to the LLM and return its investigation text."""
     prompt = build_prompt(events, label)
-    response = _client.messages.create(
-        model=config.ANTHROPIC_MODEL,
-        max_tokens=config.ANTHROPIC_MAX_TOKENS,
+    response = _client.chat.completions.create(
+        model=config.OPENROUTER_MODEL,
+        max_tokens=config.OPENROUTER_MAX_TOKENS,
         messages=[
             {"role": "user", "content": prompt}
         ]
     )
-    return "".join(block.text for block in response.content if block.type == "text")
+    return response.choices[0].message.content

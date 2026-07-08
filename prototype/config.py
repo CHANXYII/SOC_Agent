@@ -18,8 +18,9 @@ CLICKHOUSE_TABLE = "security_events"
 
 SAMPLE_DATA_CSV_PATH = os.environ.get("SAMPLE_DATA_CSV_PATH", "data/sample_data.csv")
 
-ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"
-ANTHROPIC_MAX_TOKENS = 500
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
+OPENROUTER_MODEL = os.environ.get("OPENROUTER_MODEL", "openai/gpt-4o-mini")
+OPENROUTER_MAX_TOKENS = 500
 
 REPORT_OUTPUT_PATH = "report.md"
 ISOLATED_EVENTS_SAMPLE_SIZE = 20

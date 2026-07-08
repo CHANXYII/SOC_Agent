@@ -5,10 +5,10 @@ This file only orchestrates: fetch -> group -> investigation -> assemble -> save
 No SQL, no prompts, no LLM calls should live here - see clickhouse_client.py, agent.py, and report.py.
 
 Setup:
-    pip install requests anthropic --break-system-packages
+    pip install requests openai --break-system-packages
 
 Environment variables:
-    CLICKHOUSE_URL, CLICKHOUSE_USER, CLICKHOUSE_PASSWORD, CLICKHOUSE_DATABASE, ANTHROPIC_API_KEY
+    CLICKHOUSE_URL, CLICKHOUSE_USER, CLICKHOUSE_PASSWORD, CLICKHOUSE_DATABASE, OPENROUTER_API_KEY
 """
 
 import requests
