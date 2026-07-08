@@ -11,6 +11,7 @@ Environment variables:
     CLICKHOUSE_URL, CLICKHOUSE_USER, CLICKHOUSE_PASSWORD, CLICKHOUSE_DATABASE, ANTHROPIC_API_KEY
 """
 
+import requests
 import prototype.config as config
 import prototype.clickhouse_client as clickhouse
 import prototype.agent as agent
@@ -19,7 +20,11 @@ import prototype.report as report
 
 def main():
     print("Fetching malicious events from Clickhouse...")
-    events = clickhouse.fetch_malicious_events()
+    try:
+        events = clickhouse.fetch_malicious_events()
+    except (requests.RequestException, RuntimeError) as exc:
+        print(f"Clickhouse unavailable ({exc}); falling back to {config.SAMPLE_DATA_CSV_PATH}")
+        events = clickhouse.fetch_malicious_events_from_csv()
     print(f"Fetched {len(events)} malicious-flagged events.")
 
     campaigns, isolated = report.group_by_campaign(events)

@@ -13,11 +13,13 @@ load_dotenv()
 CLICKHOUSE_URL = os.environ.get("CLICKHOUSE_URL", "https://ch.need.cat/")
 CLICKHOUSE_USER = os.environ.get("CLICKHOUSE_USER", "admin")
 CLICKHOUSE_PASSWORD = os.environ.get("CLICKHOUSE_PASSWORD", "nine")
-CLICKHOUSE_DATABASE = os.environ.get("CLICKHOUSE_DATABASE", "soc_agent_db")
-CLICKHOUSE_TABLE = os.environ.get("CLICKHOUSE_TABLE", "security_events")
+CLICKHOUSE_DATABASE = os.environ.get("CLICKHOUSE_DATABASE", "default")
+CLICKHOUSE_TABLE = "security_events"
 
-ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-haiku-4.5")
-ANTHROPIC_MAX_TOKENS = int(os.environ.get("ANTHROPIC_MAX_TOKENS", 500))
+SAMPLE_DATA_CSV_PATH = os.environ.get("SAMPLE_DATA_CSV_PATH", "data/sample_data.csv")
 
-REPORT_OUTPUT_PATH = os.environ.get("REPORT_OUTPUT_PATH", "report.md")
-ISOLATED_EVENTS_SAMPLE_SIZE = int(os.environ.get("ISOLATED_EVENTS_SAMPLE_SIZE", 20))
+ANTHROPIC_MODEL = "claude-haiku-4.5"
+ANTHROPIC_MAX_TOKENS = 500
+
+REPORT_OUTPUT_PATH = "report.md"
+ISOLATED_EVENTS_SAMPLE_SIZE = 20
