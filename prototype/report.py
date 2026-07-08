@@ -9,7 +9,7 @@ import prototype.config as config
 
 
 def group_by_campaign(events):
-    """Group events by campaign_id, Events with empty campaing_id are isolated."""
+    """Group events by campaign_id, Events with empty campaign_id are isolated."""
     campaigns = defaultdict(list)
     isolated = []
     for event in events:
@@ -26,5 +26,5 @@ def assemble(sections: list[str]) -> str:
 
 def save(report_text: str, path: str = None):
     path = path or config.REPORT_OUTPUT_PATH
-    with open(path, "w") as f:
+    with open(path, "w", encoding="utf-8") as f:
         f.write(report_text)

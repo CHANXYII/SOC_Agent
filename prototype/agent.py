@@ -1,7 +1,7 @@
 """
 Agent reasoning logic lives here: turning raw events into a prompt,
 and calling the LLM. Kept separate from data access and reporting so that
-when phase 6 (Multi-Agent) splits this into severalspecialized agents,
+when phase 6 (Multi-Agent) splits this into several specialized agents,
 this is the only file that needs to grow.
 """
 

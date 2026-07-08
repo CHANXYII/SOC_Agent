@@ -2,7 +2,7 @@
 SOC Agent Prototype - Phase 1 entrypoint.
 
 This file only orchestrates: fetch -> group -> investigation -> assemble -> save.
-No SQL, no prompts, no LLM calls shoul live here - see clickhouse_client.py, agent.py, and report.py.
+No SQL, no prompts, no LLM calls should live here - see clickhouse_client.py, agent.py, and report.py.
 
 Setup:
     pip install requests anthropic --break-system-packages
@@ -31,9 +31,9 @@ def main():
     print(f"Found {len(campaigns)} multi-step campaigns and {len(isolated)} isolated events.")
 
     sections = []
-    for campaign_id, events in campaigns.items():
-        print(f"Investigating campaign {campaign_id} with {len(events)} events...")
-        investigation = agent.investigate(events, label=f"Campaign {campaign_id}")
+    for campaign_id, campaign_events in campaigns.items():
+        print(f"Investigating campaign {campaign_id} with {len(campaign_events)} events...")
+        investigation = agent.investigate(campaign_events, label=f"Campaign {campaign_id}")
         sections.append(f"## Campaign {campaign_id}\n\n{investigation}\n")
 
     if isolated:

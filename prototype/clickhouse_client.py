@@ -20,6 +20,8 @@ CSV_COLUMNS = [
 
 def query(sql: str):
     """Run a SQL query against the Clickhouse database and return the results as a list of dicts."""
+    if not config.CLICKHOUSE_USER or not config.CLICKHOUSE_PASSWORD:
+        raise RuntimeError("CLICKHOUSE_USER and CLICKHOUSE_PASSWORD must be set in the environment")
     response = requests.post(
         config.CLICKHOUSE_URL,
         params={"database": config.CLICKHOUSE_DATABASE, "default_format": "JSONEachRow"},
@@ -40,7 +42,6 @@ def fetch_malicious_events():
         FROM {config.CLICKHOUSE_TABLE}
         WHERE is_malicious = 1
         ORDER BY campaign_id, event_time
-        FORMAT JSONEachRow
     """
     return query(sql)
 
