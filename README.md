@@ -31,6 +31,12 @@ Copy `.env.example` to `.env` and fill in real credentials. Never commit `.env`.
 cp .env.example .env
 ```
 
+Install Python dependencies:
+
+```bash
+py -m pip install -r requirements.txt
+```
+
 ## Roadmap
 
 | Phase | Name | Target finish |
