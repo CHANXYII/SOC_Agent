@@ -1,0 +1,25 @@
+# --- Secrets / environment ---
+.env
+.env.*
+!.env.example
+ 
+# --- Editor / IDE ---
+.vscode/
+.claude/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+ 
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+ 
+# --- Generated output ---
+report.md
+*.log
